@@ -1,23 +1,37 @@
-import * as React from 'react';
+import { useCallback, useRef } from "react";
 
-export const useMyHook = () => {
-  let [{
-    counter
-  }, setState] = React.useState<{
-    counter: number;
-  }>({
-    counter: 0
-  });
+const wait = (waitMs: number) =>
+    new Promise<void>(resolve => {
+      setTimeout(() => {
+        resolve();
+      }, waitMs);
+    });
 
-  React.useEffect(() => {
-    let interval = window.setInterval(() => {
-      counter++;
-      setState({counter})
-    }, 1000)
-    return () => {
-      window.clearInterval(interval);
-    };
-  }, []);
+export const useCircuitBreaker = (
+    countLimit: number,
+    intervalMs: number,
+    onReachLimit: () => void | Promise<void>,
+): [() => Promise<void>] => {
+  const count = useRef(0);
 
-  return counter;
+  const increment = () => {
+    count.current += 1;
+  };
+
+  const decrement = () => {
+    count.current -= 1;
+  };
+
+  const send = useCallback(async () => {
+    increment();
+
+    await wait(intervalMs);
+    if (count.current >= countLimit) {
+      onReachLimit();
+    }
+
+    decrement();
+  }, [countLimit, intervalMs]);
+
+  return [send];
 };

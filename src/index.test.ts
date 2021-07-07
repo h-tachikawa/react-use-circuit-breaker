@@ -1,29 +1,40 @@
-import { useMyHook } from './'
-import { renderHook, act } from "@testing-library/react-hooks";
+import { renderHook } from "@testing-library/react-hooks";
+import { useCircuitBreaker } from ".";
 
-// mock timer using jest
-jest.useFakeTimers();
+describe("useCircuitBreaker", () => {
+  const setup = async () => {
+    const spyCallbackFn = jest.fn();
+    const { result } = renderHook(() =>
+        useCircuitBreaker(3, 500, spyCallbackFn),
+    );
 
-describe('useMyHook', () => {
-  it('updates every second', () => {
-    const { result } = renderHook(() => useMyHook());
+    return {
+      result,
+      spyCallbackFn,
+    };
+  };
 
-    expect(result.current).toBe(0);
+  it("should call callback function when call count for returned function had overed limit in interval", async () => {
+    const {
+      result: { current },
+      spyCallbackFn,
+    } = await setup();
 
-    // Fast-forward 1sec
-    act(() => {
-      jest.advanceTimersByTime(1000);
-    });
+    const send = current[0];
+    await Promise.all([send(), send(), send()]);
 
-    // Check after total 1 sec
-    expect(result.current).toBe(1);
+    expect(spyCallbackFn).toHaveBeenCalled();
+  });
 
-    // Fast-forward 1 more sec
-    act(() => {
-      jest.advanceTimersByTime(1000);
-    });
+  it("should not call callback function when call count for returned function had not overed limit in interval", async () => {
+    const {
+      result: { current },
+      spyCallbackFn,
+    } = await setup();
 
-    // Check after total 2 sec
-    expect(result.current).toBe(2);
-  })
-})
+    const send = current[0];
+    await Promise.all([send(), send()]);
+
+    expect(spyCallbackFn).not.toHaveBeenCalled();
+  });
+});
