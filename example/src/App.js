@@ -1,12 +1,18 @@
 import React from 'react'
 
-import { useMyHook } from 'react-use-circuit-breaker'
+import { useCircuitBreaker } from 'react-use-circuit-breaker'
 
 const App = () => {
-  const example = useMyHook()
+  const [send] = useCircuitBreaker(3, 2000, () => {
+    throw new Error("The breaker trips!");
+  });
+
   return (
     <div>
-      {example}
+      If you push below button 3 times in 2 seconds, then an error will occur(please check devtools for browser)
+      <div>
+        <button onClick={() => send().then(() => {})}>PUSH</button>
+      </div>
     </div>
   )
 }
