@@ -19,9 +19,9 @@ import { useCircuitBreaker } from 'react-use-circuit-breaker'
 
 /**
  * Execute callback function that passed by third argument
- * when "send" function called 3 times in 5 seconds.
+ * when send function called 2 times in 5 seconds.
  */
-const [send] = useCircuitBreaker(3, 5000, () => {
+const [send] = useCircuitBreaker(2, 5000, () => {
   throw new Error("The breaker trips!");
 });
 
