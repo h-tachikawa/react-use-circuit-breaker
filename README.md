@@ -2,8 +2,8 @@
 
 > React hook that works like circuit breaker.
 
-[![NPM](https://img.shields.io/npm/v/react-use-circuit-breaker.svg)](https://www.npmjs.com/package/react-use-circuit-breaker) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-[![Node.js CI](https://github.com/h-tachikawa/react-use-circuit-breaker/actions/workflows/node-test.yaml/badge.svg?branch=master)](https://github.com/h-tachikawa/react-use-circuit-breaker/actions/workflows/node-test.yaml)
+[![NPM](https://img.shields.io/npm/v/react-use-circuit-breaker.svg)](https://www.npmjs.com/package/react-use-circuit-breaker)
+[![Tests](https://github.com/h-tachikawa/react-use-circuit-breaker/actions/workflows/tests.yaml/badge.svg)](https://github.com/h-tachikawa/react-use-circuit-breaker/actions/workflows/tests.yaml)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
 ## Install
