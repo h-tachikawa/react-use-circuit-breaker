@@ -27,7 +27,7 @@ const [send] = useCircuitBreaker(2, 5000, () => {
 
 send();
 send();
-send(); // => Uncaught Error: The breaker trips!
+send(); // => Uncaught Error: The breaker trips!!
 ```
 
 ## License
