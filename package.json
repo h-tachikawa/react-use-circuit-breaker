@@ -36,7 +36,7 @@
     "@rollup/plugin-url": "^5.0.1",
     "@testing-library/react-hooks": "^3.2.1",
     "@types/jest": "^23.3.13",
-    "@types/react": "^16.7.22",
+    "@types/react": "17.0.43",
     "cross-env": "^5.2.0",
     "gh-pages": "^2.0.1",
     "react": "^16.9.0",
