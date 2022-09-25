@@ -32,7 +32,7 @@
     "@rollup/plugin-babel": "^5.2.0",
     "@rollup/plugin-commonjs": "^15.0.0",
     "@rollup/plugin-node-resolve": "^9.0.0",
-    "@rollup/plugin-typescript": "^5.0.2",
+    "@rollup/plugin-typescript": "8.5.0",
     "@rollup/plugin-url": "^5.0.1",
     "@testing-library/react-hooks": "^3.2.1",
     "@types/jest": "^23.3.13",
