@@ -6,7 +6,7 @@
   "private": true,
   "dependencies": {
     "react": "file:../node_modules/react",
-    "react-dom": "^16.9.0",
+    "react-dom": "^18.0.0",
     "react-scripts": "^3.0.1",
     "react-use-circuit-breaker": "file:.."
   },
